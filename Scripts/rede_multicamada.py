@@ -1,8 +1,15 @@
 import numpy as np
 
+#   Sigmoid Formula
+#
+#   Y =  ____1____
+#               -x
+#         1 - e
+
 def sigmoid(soma):
     return 1 / (1 + np.exp(-soma))
 
+#As entradas, saídas, pesos0, pesos1 e epocas foram retiradas da video-aula 25. Implementação rede multicamada I e II
 entradas = ([[0,0],
              [0,1],
              [1,0],
@@ -22,4 +29,10 @@ for j in range(epocas):
     somaSinapse0 = np.dot(camadaEntrada, pesos0)
     camadaOculta = sigmoid(somaSinapse0)
 
-
+# Lembrando, a função NumPy.DOT equivale às linhas abaixo, porém mais ágil:
+#    sum = 0;
+#    for i in range(len(entradas)):
+#        print(entradas[i])
+#        print(pesos0[i])
+#        sum += entradas[i] * pesos0[i]
+#    return sum
