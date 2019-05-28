@@ -28,11 +28,17 @@ for j in range(epocas):
     camadaEntrada = entradas
     somaSinapse0 = np.dot(camadaEntrada, pesos0)
     camadaOculta = sigmoid(somaSinapse0)
+    somaSinapse1 = np.dot(camadaOculta, pesos1)
+    RespostaFinal = sigmoid(somaSinapse1)
+
 
 # Lembrando, a função NumPy.DOT equivale às linhas abaixo, porém mais ágil:
-#    sum = 0;
+#DotProductcomFor(entradas, pesos):
+#    sum = 0
 #    for i in range(len(entradas)):
 #        print(entradas[i])
-#        print(pesos0[i])
-#        sum += entradas[i] * pesos0[i]
+#        print(pesos[i])
+#        sum += entradas[i] * pesos[i]
 #    return sum
+
+#Erro = respostaCorreta - respostaCalculada

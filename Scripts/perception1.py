@@ -2,7 +2,7 @@ inputs = [1,7,5]
 weight = [0.8,0.1,0]
 
 def soma(input, weight):
-    sum = 0;
+    sum = 0
     for i in range(len(input)):
         print(input[i])
         print(weight[i])
