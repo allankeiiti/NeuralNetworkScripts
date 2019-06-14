@@ -6,8 +6,18 @@ import numpy as np
 #               -x
 #         1 - e
 
+
 def sigmoid(soma):
     return 1 / (1 + np.exp(-soma))
+
+#   Derivada
+#   d = y * (1 - y)
+
+def sigmoidDerivada(slg):
+    return slg * (1 - slg)
+
+a = sigmoid(0.5)
+b = sigmoidDerivada(a)
 
 #As entradas, saídas, pesos0, pesos1 e epocas foram retiradas da video-aula 25. Implementação rede multicamada I e II
 entradas = ([[0,0],
@@ -26,10 +36,17 @@ epocas = 100
 
 for j in range(epocas):
     camadaEntrada = entradas
+
     somaSinapse0 = np.dot(camadaEntrada, pesos0)
     camadaOculta = sigmoid(somaSinapse0)
+
     somaSinapse1 = np.dot(camadaOculta, pesos1)
-    RespostaFinal = sigmoid(somaSinapse1)
+    CamadaFinal = sigmoid(somaSinapse1)
+
+    erroCamadaSaida = saidas - CamadaFinal
+
+    #Media absoluta envolve os valores de Erro da camada de saída positivo. Verificar Imagem Rede_Neural_Multicamda_foto.PNG
+    mediaAbsoluta = np.mean(np.abs(erroCamadaSaida))
 
 
 # Lembrando, a função NumPy.DOT equivale às linhas abaixo, porém mais ágil:
@@ -41,4 +58,4 @@ for j in range(epocas):
 #        sum += entradas[i] * pesos[i]
 #    return sum
 
-#Erro = respostaCorreta - respostaCalculada
+#Erro = respostaCorreta - respostaCalculada.
