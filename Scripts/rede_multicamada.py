@@ -30,6 +30,8 @@ pesos0 = ([[-0.424, -0.740, -0.961],
 pesos1 = ([[-0.017], [-0.893], [0.148]])
 
 epocas = 100
+taxaAprendizagem = 0.3
+momento = 1
 
 for j in range(epocas):
     camadaEntrada = entradas
@@ -49,8 +51,18 @@ for j in range(epocas):
     derivadaSaida = sigmoidDerivada(CamadaFinal)
     deltaSaida = erroCamadaSaida * derivadaSaida
 
+    # Matriz Transposta
+    pesos1Transposta = pesos1.T
+    deltaSaidaXPeso = deltaSaida.dot(pesos1Transposta)
+    deltaCamadaOculta =deltaSaidaXPeso * sigmoidDerivada(camadaOculta)
+
+    # Backpropagation
+    camadaOcultaTransposta = camadaOculta.T
+    pesosNovo1 = camadaOcultaTransposta.dot(deltaSaida)
+    pesos1 = (pesos1 * momento) + (pesosNovo1 * taxaAprendizagem)
 
 # Lembrando, a função NumPy.DOT equivale às linhas abaixo, porém mais ágil:
+
 #DotProductcomFor(entradas, pesos):
 #    sum = 0
 #    for i in range(len(entradas)):
